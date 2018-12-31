@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <link href="css/app.css" type="text/css" rel="stylesheet">
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
-  <script src="js/test.js" type="text/javascript"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/app.js" type="text/javascript"></script>
   <title>Punch Card</title>
 </head>
 
@@ -34,11 +34,11 @@
     <div class="inputBox" id="registerBox">
       <div id="password">
         <label>password</label>
-        <input autocomplete="off" type="password">
+        <input autocomplete="off" type="password" id="passwordInput1">
       </div>
       <div id="confirm password">
         <label>confirm password</label>
-        <input autocomplete="off" type="password">
+        <input autocomplete="off" type="password" id="passwordInput2">
       </div>
       <div class="inputError">两次密码不一致</div>
       <button type="submit" id="registerButton">register</button>
@@ -86,10 +86,13 @@
     <button id="punchButton">打卡</button>
 
     <div id="info">
+      <div><p>当前账户：</p><p id="currentAccount"></p></div>
       <div><p>账户余额(ether)：</p><p id="balance"></p></div>
       <div><p>已开启本周打卡项目：</p><p id="ifItemOpen"></p><button id="resetButton">开启</button></div>
+      <div><p>项目开启时间(s)：</p><p id="openTime"></p></div>
     </div>
     <button id="quit">退出账号</button>
+    <button id="refreshButton">刷新</button>
 
     <div id="deploy">
       <div>合约地址：<p id="addr"></p></div>

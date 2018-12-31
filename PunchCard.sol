@@ -124,10 +124,8 @@ contract PunchCard {
 		beginTime += 7 * 24 hours;
 	}
 
-	//判断本周项目是否开启
-	function ifBegin() public view returns(bool) {
-		return (now - beginTime) <= 7 * 24 hours;
+	function ifPunched(uint i) public view returns(bool) {
+		return participators[msg.sender].punch[i];
 	}
-	
 }
 
