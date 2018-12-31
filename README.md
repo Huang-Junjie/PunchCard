@@ -33,6 +33,29 @@
 
 
 
+## 使用说明
+
+1. 开启本地geth， 并持续进行挖矿: 
+
+   ``geth --identity "TestNode" --rpc --rpcport "8545" --datadir data --port "30303" --rpccorsdomain "*" --nodiscover console - -rpcapi web3,eth,net,personal``    	`` miner.start()``
+
+2.  punchCard.html为真正的打卡app，但如果要体验效果可以打开test.html（如下面的成果展示）。
+
+3. 打开test.html后，进入登入界面，登录账号列表会自动从geth中获取，选择一个账号输入密码登入。如果没有账号可点击register，输入密码2次后进行注册。新建账号回保存在geth数据存放目录下的keystore目录中，这时再进入登录界面账号列表就有了刚才注册的账号。
+
+   ![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/1.png)
+
+4. 进入主界面后，一开始test.js文件的contractAddr变量为空，可以点击左上角的部署合约按钮进行部署并把合约地址复制给test.js的contractAddr变量。之后多浏览器打开其他test.html就会加载存储了合约地址的test.js，从而可以使用刚才部署的合约。
+
+![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/3.png)
+
+5. 在参与按钮左边输入框内输入参与金额，点击参与按钮。若在参与时间内被且没有加入过本周打开项目，当该交易被挖出矿后参与成功。
+
+6. 在正确的打卡时间内点击打卡按钮，当该交易被挖出矿后打卡成功。
+
+7. 当本周打卡项目结束后（点击刷新按钮，查看“已开启本周打卡项目”是否为“否”），点击开启按钮，即可结算本周打卡项目并开启下周打卡项目，之后可以重复上述步骤，进行下周打卡项目。
+
+
 ## 成果展示（测试）：
 
 因为PunchCard打卡项目是以天为单位的，因此重写了一个测试合约，将时间判断进行修改：
@@ -44,9 +67,9 @@
 
 
 
-1. 开启本地geth: 
+1. 开启本地geth， 并持续进行挖矿: 
 
-``geth --identity "TestNode" --rpc --rpcport "8545" --datadir data --port "30303" --rpccorsdomain "*" --nodiscover console - -rpcapi web3,eth,net,personal``
+   ``geth --identity "TestNode" --rpc --rpcport "8545" --datadir data --port "30303" --rpccorsdomain "*" --nodiscover console - -rpcapi web3,eth,net,personal``    	`` miner.start()``
 
 2. 打开test.html
 3. 初始界面
@@ -59,9 +82,9 @@
 
 ![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/3.png)
 
-5. 部署测试合约：点击部署合约按钮进行部署，得到合约地址。为了可以多浏览器可以同时运行该合约，可以将合约地址赋值到test.js中。![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/5.png)
+5. 部署测试合约：点击部署合约按钮进行部署，得到合约地址。为了可以多浏览器可以同时运行该合约，可以将合约地址复制到test.js中。![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/5.png)
 
-   也可以一开始就使用remix部署合约，将合约地址赋值给test.js的contractAddr变量。
+   也可以一开始就使用remix部署合约，将合约地址复制给test.js的contractAddr变量。
 
    ![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/4.png)
 
@@ -103,6 +126,5 @@
     由于账户1是3个账户中唯一成功7天打卡的账户，因此，账户1可以获得合约账户余额的90%作为奖励，即4.286 * 90% = 3.8574 ether，与下图账户1余额的增量相符合。
 
 ![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/16.png)
-
 
 
