@@ -96,13 +96,13 @@
 
     给账户2的奖励应为4.286 * 10% = 0.4286 ether， 与下图账户2余额的增加相符。
 
-![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/13.png)
+![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/15.png)
 
 12. 查看账户1获得的奖励。
 
     由于账户1是3个账户中唯一成功7天打卡的账户，因此，账户1可以获得合约账户余额的90%作为奖励，即4.286 * 90% = 3.8574 ether，与下图账户1余额的增量相符合。
 
-![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/14.png)
+![](https://github.com/Huang-Junjie/PunchCard/blob/master/Assets/16.png)
 
 
 
