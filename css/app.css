@@ -85,7 +85,7 @@
 
 #punchCard {
     width: 600px;
-    height: 380px;
+    /*height: 400px;*/
     margin: 100px auto auto auto;
     border: 1px solid #e4ecf3;
     display: none;

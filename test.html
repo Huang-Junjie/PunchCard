@@ -34,11 +34,11 @@
     <div class="inputBox" id="registerBox">
       <div id="password">
         <label>password</label>
-        <input autocomplete="off" type="password">
+        <input autocomplete="off" type="password" id="passwordInput1">
       </div>
       <div id="confirm password">
         <label>confirm password</label>
-        <input autocomplete="off" type="password">
+        <input autocomplete="off" type="password" id="passwordInput2">
       </div>
       <div class="inputError">两次密码不一致</div>
       <button type="submit" id="registerButton">register</button>
@@ -57,39 +57,42 @@
 
     <div class="punchDays">
       <div class="days">1</div>
-      <div class="punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">2</div>
-      <div class="punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">3</div>
-      <div class="punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
-      <div class="days today">4</div>
-      <div class="punchMark"></div>
+      <div class="days">4</div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">5</div>
-      <div class="unPunchedDay punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">6</div>
-      <div class="unPunchedDay punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">7</div>
-      <div class="unPunchedDay punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <button id="punchButton">打卡</button>
 
     <div id="info">
+      <div><p>当前账户：</p><p id="currentAccount"></p></div>
       <div><p>账户余额(ether)：</p><p id="balance"></p></div>
       <div><p>已开启本周打卡项目：</p><p id="ifItemOpen"></p><button id="resetButton">开启</button></div>
+      <div><p>项目开启时间(s)：</p><p id="openTime"></p></div>
     </div>
     <button id="quit">退出账号</button>
+    <button id="refreshButton">刷新</button>
 
     <div id="deploy">
       <div>合约地址：<p id="addr"></p></div>

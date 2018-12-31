@@ -2,10 +2,10 @@ pragma solidity ^0.4.0;
 
 /*
 	由于时间应用是以天为单位，因此可以用此合约进行测试。
-	项目开启后1分钟为加入时间（模拟星期天开启后，在星期天晚上12点为加入截止时间）；
-	加入时间结束后，每30秒模拟经过一天；
-	30秒的前10秒可以打卡，模拟每天的早上打卡时间；
-	7个30后（模拟一周后）可以结算开启下一轮打卡项目。
+	项目开启后2分钟为加入时间（模拟星期天开启后，在星期天晚上12点为加入截止时间）；
+	加入时间结束后，每1分钟模拟经过一天；
+	1分钟的前30秒可以打卡，模拟每天的早上打卡时间；
+	7个1分钟后（模拟一周后）可以结算开启下一轮打卡项目。
 */
 
 contract PunchCardTest {
@@ -31,9 +31,9 @@ contract PunchCardTest {
 	uint256 public week;				//星期
 
 	modifier onlyJointime { 
-		//自启动时间起1分钟内为加入时间
+		//自启动时间起2分钟内为加入时间
 		require(
-			now < beginTime + 1 minutes,
+			now < beginTime + 2 minutes,
 			"已错过本轮打卡项目加入时间"
 		);
 		_; 
@@ -42,7 +42,8 @@ contract PunchCardTest {
 	modifier onlyEarlyMorning { 
 		//若beginTime为7点，每天打卡时间为5点到6点59分59秒
 		require(
-			(now - beginTime - 1 minutes) % (30 seconds) < 10 seconds,
+			now >= beginTime + 2 minutes &&
+			(now - beginTime - 2 minutes) % (1 minutes) < 30 seconds,
 			"已错过今日打卡时间"
 		);
 		_; 
@@ -51,7 +52,7 @@ contract PunchCardTest {
 	modifier onlyEnd { 
 		//项目启动7天后结束
 		require(
-			(now - beginTime - 1 minutes) > 7 * 30 seconds,
+			now > beginTime + 7 * 1 minutes + 2 minutes,
 			"本轮打卡项目未结束"
 		);
 		_; 
@@ -59,7 +60,7 @@ contract PunchCardTest {
 
 	modifier onlyNotEnd { 
 		require(
-			(now - beginTime - 1 minutes) < 7 * 30 seconds,
+			now < beginTime + 7 * 1 minutes + 2 minutes,
 			"本轮打卡项目已结束"
 		);
 		_; 
@@ -86,14 +87,14 @@ contract PunchCardTest {
     }
 
     //加入打卡项目
-	function join() public payable onlyJointime onlyUnjoined{
+	function join() public payable onlyJointime onlyUnjoined {
 		uint256 money = msg.value < 10 ether ? msg.value : 10**19;	//最多用10 ether 加入打卡项目
 		participators[msg.sender] = participator(beginTime, money, 0, [false, false, false, false, false, false, false]);
 	}
 
 	//每日打卡
 	function punchIn() public onlyEarlyMorning onlyNotEnd onlyJoined{
-		week = (now - beginTime - 1 minutes) / 30 seconds;
+		week = (now - beginTime - 2 minutes) / 1 minutes;
 		//确保每天只能打一次卡
 		require(
 			!participators[msg.sender].punch[week],
@@ -121,12 +122,10 @@ contract PunchCardTest {
 		achievers.length = 0;
 		succeedAmount = 0;
 		sumOfMoneyOfpunched = 0;
-		beginTime += 7 * 30 seconds + 1 minutes;
+		beginTime += 7 * 1 minutes + 2 minutes;
 	}
 
-	//判断本周项目是否开启
-	function ifBegin() public view returns(bool) {
-		return (now - beginTime - 1 minutes) < 7 * 30 seconds;
+	function ifPunched(uint i) public view returns(bool) {
+		return participators[msg.sender].punch[i];
 	}
 }
-

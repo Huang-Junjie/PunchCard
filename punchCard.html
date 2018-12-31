@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <link href="css/app.css" type="text/css" rel="stylesheet">
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/web3.min.js" type="text/javascript"></script>
-  <script src="js/app.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+  <script src="js/test.js" type="text/javascript"></script>
   <title>Punch Card</title>
 </head>
 
@@ -48,51 +48,51 @@
 
   <div id="punchCard">
     <div id="join">
-      <input type="" name="">
-      <p>(wei)</p>
+      <input id="joinInput">
+      <p>(ether)</p>
       <button id="joinButton">参与</button>
-      <div><p>已参与本周打卡：</p><p>否</p></div>
-      <div><p>参与金额(wei)：</p><p>0</p></div>
+      <div><p>已参与本周打卡：</p><p id="ifJoined"></p></div>
+      <div><p>参与金额(ether)：</p><p id="joinMoney"></p></div>
     </div>
 
     <div class="punchDays">
       <div class="days">1</div>
-      <div class="punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">2</div>
-      <div class="punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">3</div>
-      <div class="punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
-      <div class="days today">4</div>
-      <div class="punchMark"></div>
+      <div class="days">4</div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">5</div>
-      <div class="unPunchedDay punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">6</div>
-      <div class="unPunchedDay punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <div class="punchDays">
       <div class="days">7</div>
-      <div class="unPunchedDay punchMark"></div>
+      <div class="punchMark unPunchedDay"></div>
     </div>
     <button id="punchButton">打卡</button>
 
     <div id="info">
-      <div><p>账户余额(wei)：</p><p>1</p></div>
-      <div><p>已开启本周打卡项目：</p><p></p><button id="resetButton">开启</button></div>
+      <div><p>账户余额(ether)：</p><p id="balance"></p></div>
+      <div><p>已开启本周打卡项目：</p><p id="ifItemOpen"></p><button id="resetButton">开启</button></div>
     </div>
     <button id="quit">退出账号</button>
 
     <div id="deploy">
-      <div>合约地址：<p id="addr">123</p></div>
+      <div>合约地址：<p id="addr"></p></div>
       <button id="deployButton">部署合约</button>
     </div>
 
